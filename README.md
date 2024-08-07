@@ -27,4 +27,4 @@ A web-based Sorting Visualizer that animates and demonstrates various sorting al
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/yourusername/sorting-visualizer.git
+   git clone https://github.com/yash-geek/sorting-visualizer.git
