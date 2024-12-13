@@ -1,6 +1,7 @@
 a = new AudioContext() 
 
 function beep(vol, freq, duration) {
+    //duration = 0;
     console.log({ vol, freq, duration })
     v = a.createOscillator()
     u = a.createGain()

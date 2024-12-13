@@ -44,6 +44,16 @@ body{
 	margin-bottom: 2vw;
 	align-items: center;
 }
+#technique{
+	color: white;
+	width: 100%;
+
+	display: none;
+	justify-content: center;
+	padding-bottom: 10px;
+	font-family: "Pacifico";
+	/* display: none; */
+}
 h1{
 	font-size: 3vw;
 	font-family: Pacifico, cursive;

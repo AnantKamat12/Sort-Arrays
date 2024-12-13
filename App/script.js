@@ -42,11 +42,13 @@ function generateBars(n = -1) {
 	bars = [];
 	let container = document.getElementById("container");
 	n = n < 0 ? Math.random() * 20 : n;
+	console.log(n)
 	for (let i = 0; i < n; i++) {
-		bars.push('<div class="bar" id="' + i + '" style="height:' + Math.floor(2 + Math.random() * 98) + '% "></div>');
-		
+		bars.push('<div class="bar" id="' + i + '" style="height:' + Math.floor(1 + Math.random() * 98) + '% "></div>');
+
 	}
 	container.innerHTML = bars.join('');
+	// console.log(container.innerHTML)
 }
 
 
@@ -62,11 +64,12 @@ function MapRange(value, in_min, in_max, out_min, out_max) {
 
 // SelectionSort() : Implementation of selection sort algorithm. O(n^2) 
 async function SelectionSort() {
+	document.getElementById('technique').innerText = "Selection Sort";
+	document.getElementById('technique').style.display = 'flex';
 	let delay = Disable_The_Input();
-
 	let container = document.getElementById("container");
 	for (let i = 0; i < bars.length; i++) {
-		let mn_ind = i;
+		let mn_ind = i;  //set min to current element
 		let curr_id = bars[i].split('id="')[1].split('"')[0];
 		document.getElementById(curr_id).style.backgroundColor = selected;
 		document.getElementById(curr_id).style.transform = "scaleX(2)";
@@ -86,15 +89,16 @@ async function SelectionSort() {
 		document.getElementById(nxt_ele).style.backgroundColor = selected;
 		await Sleep(2 * delay / 5.0);
 
-		let tmp = bars[mn_ind];
-		bars[mn_ind] = bars[i];
-		bars[i] = tmp;
+		//let tmp = bars[mn_ind];
+		[bars[mn_ind], bars[i]] = [bars[i], bars[mn_ind]]; //swapping
+		//bars[i] = tmp;
 
 		container.innerHTML = bars.join('');
 		await Sleep(2 * delay / 5.0);
 		document.getElementById(curr_id).style.backgroundColor = def;
 		document.getElementById(nxt_ele).style.backgroundColor = def;
 	}
+	document.getElementById('technique').style.display = 'none';
 	Finished_Sorting();
 }
 
@@ -108,6 +112,8 @@ async function SelectionSort() {
 
 // BubbleSort() : Implementation of bubble sort algorithm. O(n^2)
 async function BubbleSort() {
+	document.getElementById('technique').innerText = "Bubble Sort";
+	document.getElementById('technique').style.display = 'flex';
 	let delay = Disable_The_Input();
 	let container = document.getElementById("container");
 
@@ -119,18 +125,15 @@ async function BubbleSort() {
 
 			document.getElementById(curr_id).style.backgroundColor = selected;
 			let sound = MapRange(document.getElementById(curr_id).style.height.split('%')[0], 2, 100, 500, 1000);
-			beep(100, sound, delay)
+			beep(50, sound, delay)
 			document.getElementById(nxt_ele).style.backgroundColor = chng;
 			await Sleep(delay / 2);
+			//console.log(bars[j].split(/[:%]/))
 			let a = parseInt(bars[j].split(/[:%]/)[1]);
 			let b = parseInt(bars[j + 1].split(/[:%]/)[1]);
 			if (a > b) {
 				has_swap = true;
-
-				let t = bars[j];
-				bars[j] = bars[j + 1];
-				bars[j + 1] = t;
-
+				[bars[j], bars[j + 1]] = [bars[j + 1], bars[j]]
 				container.innerHTML = bars.join('');
 			}
 			document.getElementById(curr_id).style.backgroundColor = selected;
@@ -141,6 +144,7 @@ async function BubbleSort() {
 		}
 		if (has_swap == false) break;
 	}
+	document.getElementById('technique').style.display = 'none';
 	Finished_Sorting();
 }
 
@@ -153,6 +157,9 @@ async function BubbleSort() {
 
 // InsertionSort() : Implementation of inserion sort algorithm. O(n^2) 
 async function InsertionSort() {
+	document.getElementById('technique').innerText = "Insertion Sort";
+	document.getElementById('technique').style.display = 'flex';
+	
 	let delay = Disable_The_Input();
 	let container = document.getElementById("container");
 	for (let i = 1; i < bars.length; i++) {
@@ -162,7 +169,7 @@ async function InsertionSort() {
 		let nxt_ele = bars[j].split('id="')[1].split('"')[0];
 		document.getElementById(curr_id).style.backgroundColor = selected;
 		let sound = MapRange(document.getElementById(curr_id).style.height.split('%')[0], 2, 100, 500, 1000);
-		beep(100, sound, delay)
+		beep(45, sound, delay)
 		while (j >= 0 && parseInt(bars[j].split(/[:%]/)[1]) > parseInt(key.split(/[:%]/)[1])) {
 			document.getElementById(nxt_ele).style.backgroundColor = def;
 			nxt_ele = bars[j].split('id="')[1].split('"')[0];
@@ -180,6 +187,7 @@ async function InsertionSort() {
 		document.getElementById(curr_id).style.backgroundColor = def;
 		document.getElementById(nxt_ele).style.backgroundColor = def;
 	}
+	document.getElementById('technique').style.display = 'none';
 	Finished_Sorting();
 }
 
@@ -220,12 +228,12 @@ async function merge(l, m, r, d) {
 		document.getElementById(curr_id).style.backgroundColor = selected;
 		document.getElementById(nxt_ele).style.backgroundColor = chng;
 		let sound = MapRange(document.getElementById(curr_id).style.height.split('%')[0], 2, 100, 500, 1000);
-		beep(100, sound, d)
+		beep(50, sound, d)
 		await Sleep(d / 2.0);
 		document.getElementById(curr_id).style.backgroundColor = def;
 		document.getElementById(nxt_ele).style.backgroundColor = def;
 		sound = MapRange(document.getElementById(curr_id).style.height.split('%')[0], 2, 100, 500, 1000);
-		beep(100, sound, d)
+		beep(50, sound, d)
 	}
 }
 
@@ -241,8 +249,11 @@ async function mergeSort(l, r, d) {
 
 
 async function MergeSort() {
+	document.getElementById('technique').innerText = "Merge Sort";
+	document.getElementById('technique').style.display = 'flex';
 	let delay = Disable_The_Input();
 	await mergeSort(0, bars.length - 1, delay);
+	document.getElementById('technique').style.display = 'none';
 	Finished_Sorting();
 }
 
@@ -277,7 +288,7 @@ async function Partition(l, r, d) {
 			document.getElementById(nxt_ele).style.backgroundColor = chng;
 			document.getElementById(id).style.backgroundColor = selected;
 			let sound = MapRange(document.getElementById(curr_id).style.height.split('%')[0], 2, 100, 500, 1000);
-			beep(100, sound, d)
+			beep(50, sound, d)
 			await Sleep(d / 3.0)
 			document.getElementById(curr_id).style.backgroundColor = def;
 			document.getElementById(nxt_ele).style.backgroundColor = def;
@@ -306,8 +317,11 @@ async function quickSort(l, r, d) {
 
 
 async function QuickSort() {
+	document.getElementById('technique').innerText = "Quick Sort";
+	document.getElementById('technique').style.display = 'flex';
 	let delay = Disable_The_Input();
 	await quickSort(0, bars.length - 1, delay);
+	document.getElementById('technique').style.display = 'none';
 	Finished_Sorting();
 }
 
@@ -318,9 +332,14 @@ async function QuickSort() {
 // HEAP SORT
 // Heapfiy(): Creates a max heap.
 async function Heapfiy(n, i, d) {
+	
+	i = parseInt(i)
+	//console.log(i)
 	let largest = i;
 	let l = 2 * i + 1; // lft
 	let r = 2 * i + 2; // rgt
+	//console.log("bars " + bars[i]);
+	//console.log(bars)
 	let curr_id = bars[i].split('id="')[1].split('"')[0];
 	let nxt_ele;
 	let id3;
@@ -345,7 +364,7 @@ async function Heapfiy(n, i, d) {
 		container.innerHTML = bars.join(' ');
 		document.getElementById(curr_id).style.backgroundColor = selected;
 		let sound = MapRange(document.getElementById(curr_id).style.height.split('%')[0], 2, 100, 500, 1000);
-		beep(100, sound, d)
+		beep(50, sound, d)
 		if (r < n) document.getElementById(id3).style.backgroundColor = chng;
 		if (l < n) document.getElementById(nxt_ele).style.backgroundColor = chng;
 		await Sleep(d / 3.0)
@@ -357,8 +376,11 @@ async function Heapfiy(n, i, d) {
 
 
 async function HeapSort() {
+	document.getElementById('technique').innerText = "Heap Sort";
+	document.getElementById('technique').style.display = 'flex';
 	let delay = Disable_The_Input();
 	let n = bars.length;
+
 	for (let i = n / 2 - 1; i >= 0; i--) // Build the heap
 		await Heapfiy(n, i, delay);
 
@@ -370,5 +392,6 @@ async function HeapSort() {
 		container.innerHTML = bars.join(' ');
 		await Heapfiy(i, 0, delay);
 	}
+	document.getElementById('technique').style.display = 'none';
 	Finished_Sorting();
 } 
