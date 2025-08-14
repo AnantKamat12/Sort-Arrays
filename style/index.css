@@ -1,168 +1,186 @@
+/* Universal Styles */
 * {
-    margin: 0;
-    box-sizing: border-box;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 @font-face {
-    font-family: "Pacifico";
-    src: url("Fonts/Pacifico-Regular.woff2") format('woff2');
+  font-family: "Pacifico";
+  src: url("Fonts/Pacifico-Regular.woff2") format('woff2');
 }
 
 body {
-    background-color: black;
+  background-color: black;
+  font-family: sans-serif;
 }
 
-/* container for bars */
-#container {
-    display: flex;
-    justify-content: center; /* horizontal centering */
-    align-items: center;     /* vertical centering so bars grow up/down from center line */
-    height: 400px;           /* or whatever height */
-    position: relative;
-}
-
-/* bars */
-.bar {
-    width: 20px;              /* or your preferred width */
-    margin: 0 3px;
-    background-color: #e9e6ee;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;    /* keep numbers at bottom of bar */
-    position: relative;
-}
-
-/* positive bars */
-.bar.positive {
-    transform-origin: bottom;  /* grows upwards */
-}
-
-.bar.negative {
-    transform-origin: top;     /* grows downwards */
-}
-
-#b, #d {
-    display: inline-block;
-    margin-left: 1vw;
-    width: 1vw;
-}
-
-#bars, #delay {
-    vertical-align: middle;
-}
-
-.color-legend {
-    font-size: 1vw;
-    font-weight: bold;
-    margin-left: 2vw;
-}
-
-.color-legend div {
-    margin: 2px 0;
-}
-
-.color-legend span {
-    margin-right: 15px;
-}
-
+/*
+  Header and Controls
+*/
 .header {
-    display: flex;
-    flex-wrap: wrap;
-    font-weight: bold;
-    background-color: #2e88bd;
-    margin: 0;
-    color: rgb(206, 190, 190);
-    padding: 1vw 1vw 2vw 1vw;
-    margin-bottom: 2vw;
-    align-items: center;
-}
-
-#technique {
-    color: white;
-    width: 100%;
-    display: none;
-    justify-content: center;
-    padding-bottom: 10px;
-    font-family: "Pacifico";
+  display: flex;
+  flex-wrap: wrap;
+  font-weight: bold;
+  background-color: #2e88bd;
+  color: rgb(206, 190, 190);
+  /* Further reduced padding for a thinner header */
+  padding: 0.1vw 0.5vw;
+  /* Further reduced bottom margin for a more compact look */
+  margin-bottom: 0.3vw;
+  align-items: center;
 }
 
 h1 {
-    font-size: 3vw;
-    font-family: Pacifico, cursive;
-    font-weight: lighter;
-    width: 25%;
-    text-align: center;
-}
-
-.range {
-    justify-content: space-evenly;
-    display: flex;
-    flex-wrap: wrap;
-    flex-flow: wrap;
-}
-
-.slide {
-    margin: 0vw 1vw;
-}
-
-.sorts {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+  font-family: Pacifico, cursive;
+  /* Reduced font size for a smaller title */
+  font-size: 1.5vw;
+  font-weight: lighter;
+  width: 25%;
+  text-align: center;
 }
 
 .vars {
-    width: 60%;
-    align-self: flex-start;
-    text-align: center;
-    font-size: 1.3vw;
-    font-family: sans-serif;
+  width: 60%;
+  align-self: flex-start;
+  text-align: center;
+  /* Reduced font size for controls */
+  font-size: 0.9vw;
 }
 
-input[type="button"] {
-    margin: 1.5vw 0.5vw;
+.color-legend {
+  /* Reduced font size for the legend */
+  font-size: 0.7vw;
+  font-weight: bold;
+  margin-left: 2vw;
 }
 
-input[type="button"]:hover, button:hover {
-    background-color: #f8a7a7;
-    cursor: pointer;
-    color: #1830a8;
+.color-legend div {
+  margin: 2px 0;
 }
 
-input[type="button"]:disabled, input[type="range"]:disabled {
-    background-color: #ffffff;
-    cursor: not-allowed;
-    color: blue;
+.color-legend span {
+  margin-right: 15px;
 }
 
-input[type="button"], button {
-    background: rgb(100, 96, 96);
-    border: none;
-    padding: 1.3vh;
-    border-radius: 9vw;
-    min-width: 8vw;
-    color: #f8a7a7;
-    font-size: 1.2vw;
+.range,
+.sorts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-/* Footer styling */
+.slide {
+  margin: 0vw 1vw;
+}
+
+/* Reduced margin-top for the user input div in your HTML */
+.user-input {
+  margin-top: 0.2vw !important;
+}
+
+/* Reduced margin-top for the sorts div in your HTML */
+.sorts {
+  margin-top: 0.2vw !important;
+}
+
+#b, #d {
+  display: inline-block;
+  margin-left: 1vw;
+  width: 1vw;
+}
+
+#bars, #delay {
+  vertical-align: middle;
+}
+
+input[type="button"],
+button {
+  background: rgb(100, 96, 96);
+  border: none;
+  /* Reduced vertical padding to make buttons shorter */
+  padding: 0.8vh;
+  border-radius: 9vw;
+  min-width: 8vw;
+  color: #f8a7a7;
+  font-size: 1vw;
+  /* Reduced margin to bring buttons closer to text */
+  margin: 0.5vw 0.5vw;
+}
+
+input[type="button"]:hover,
+button:hover {
+  background-color: #f8a7a7;
+  cursor: pointer;
+  color: #1830a8;
+}
+
+input[type="button"]:disabled,
+input[type="range"]:disabled {
+  background-color: #ffffff;
+  cursor: not-allowed;
+  color: blue;
+}
+
+/*
+  Main Visualization Section
+*/
+#container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  position: relative;
+}
+
+#technique {
+  color: white;
+  width: 100%;
+  display: none;
+  justify-content: center;
+  padding-bottom: 10px;
+  font-family: "Pacifico";
+}
+
+.bar {
+  width: 20px;
+  margin: 0 3px;
+  background-color: #e9e6ee;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  position: relative;
+  transition: height 0.3s ease;
+}
+
+.bar.positive {
+  transform-origin: bottom;
+}
+
+.bar.negative {
+  transform-origin: top;
+}
+
+/*
+  Footer
+*/
 footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: #2e88bd;
-    color: rgb(206, 190, 190);
-    text-align: center;
-    padding: 1vw 0;
-    font-family: sans-serif;
-    font-size: 1vw;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #2e88bd;
+  color: rgb(206, 190, 190);
+  text-align: center;
+  /* Added a small padding to give it some height */
+  padding: 0.5vw 0;
+  /* Slightly increased font size for better readability */
+  font-size: 0.8vw;
 }
 
 footer a {
-    color: #f8a7a7;
-    text-decoration: none;
+  color: #f8a7a7;
+  text-decoration: none;
 }
 
 footer a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }

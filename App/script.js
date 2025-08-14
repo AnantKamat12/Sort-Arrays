@@ -39,21 +39,36 @@ function Finished_Sorting() {
         x[i].disabled = false;
 }
 
+// A helper function to find the maximum absolute value in the array
+function getMaxValue(arr) {
+    let max = 0;
+    for (const val of arr) {
+        if (Math.abs(val) > max) {
+            max = Math.abs(val);
+        }
+    }
+    // Return 1 to prevent division by zero if all values are 0
+    return max || 1; 
+}
+
 // Generate random bars
 function generateBars(n = -1) {
     let container = document.getElementById("container");
-    n = n < 0 ? Math.floor(Math.random() * 20 + 5) : n; // minimum 5 bars
+    n = n < 0 ? Math.floor(Math.random() * 20 + 5) : n;
     let arr = [];
     for (let i = 0; i < n; i++) {
-        arr.push(Math.floor(Math.random() * 100) - 50); // random -50 to +49
+        // You can use a larger range now
+        arr.push(Math.floor(Math.random() * 200) - 100); 
     }
-
+    
+    const maxVal = getMaxValue(arr);
     bars = arr.map((val, idx) => {
         const cls = val >= 0 ? "bar positive" : "bar negative";
-        const height = Math.abs(val);
+        // Calculate height as a percentage of the max value
+        const height = (Math.abs(val) / maxVal) * 100;
         return `<div class="${cls}" id="${idx}" style="height:${height}%">${val}</div>`;
     });
-
+    
     container.innerHTML = bars.join('');
 }
 
@@ -65,9 +80,11 @@ function UseUserArray() {
     const arr = input.split(",").map(x => parseInt(x.trim())).filter(x => !isNaN(x));
     if (arr.length === 0) return alert("Enter valid numbers separated by commas!");
 
+    const maxVal = getMaxValue(arr);
     bars = arr.map((val, idx) => {
         const cls = val >= 0 ? "bar positive" : "bar negative";
-        const height = Math.abs(val);
+        // Calculate height as a percentage of the max value
+        const height = (Math.abs(val) / maxVal) * 100;
         return `<div class="${cls}" id="${idx}" style="height:${height}%">${val}</div>`;
     });
 
