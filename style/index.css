@@ -1,113 +1,168 @@
-*{
-	margin: 0;
+* {
+    margin: 0;
+    box-sizing: border-box;
 }
+
 @font-face {
     font-family: "Pacifico";
     src: url("Fonts/Pacifico-Regular.woff2") format('woff2');
 }
-body{
-	background-color: black;
+
+body {
+    background-color: black;
 }
 
-#container{
-	display: flex;
-	margin: 0 auto;
-	width: intrinsic;           
-  	width: -moz-max-content;   
- 	width: -webkit-max-content;
-	height: 60%;
+/* container for bars */
+#container {
+    display: flex;
+    justify-content: center; /* horizontal centering */
+    align-items: center;     /* vertical centering so bars grow up/down from center line */
+    height: 400px;           /* or whatever height */
+    position: relative;
 }
 
-#b{
-	display: inline-block;
-	margin-left: 1vw;
-	width: 1vw;
+/* bars */
+.bar {
+    width: 20px;              /* or your preferred width */
+    margin: 0 3px;
+    background-color: #e9e6ee;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;    /* keep numbers at bottom of bar */
+    position: relative;
 }
 
-#d{
-	display: inline-block;
-	margin-left: 1vw;
-	width: 1vw;
-}
-#bars, #delay{
-	vertical-align: middle;
+/* positive bars */
+.bar.positive {
+    transform-origin: bottom;  /* grows upwards */
 }
 
-.header{
-	display: flex;
-	flex-wrap: wrap;
-	font-weight: bold;
-	background-color: #404040;
-	margin: 0;
-	color: white;
-	padding: 1vw 1vw 2vw 1vw;
-	margin-bottom: 2vw;
-	align-items: center;
+.bar.negative {
+    transform-origin: top;     /* grows downwards */
 }
-#technique{
-	color: white;
-	width: 100%;
 
-	display: none;
-	justify-content: center;
-	padding-bottom: 10px;
-	font-family: "Pacifico";
-	/* display: none; */
+#b, #d {
+    display: inline-block;
+    margin-left: 1vw;
+    width: 1vw;
 }
-h1{
-	font-size: 3vw;
-	font-family: Pacifico, cursive;
-	font-weight: lighter;
-	width: 25%;
-	text-align : center;
+
+#bars, #delay {
+    vertical-align: middle;
 }
-.range{
-	justify-content: space-evenly;
-	display: flex;
-	flex-wrap: wrap;
-	flex-flow: wrap;
+
+.color-legend {
+    font-size: 1vw;
+    font-weight: bold;
+    margin-left: 2vw;
 }
-.slide{
-	margin: 0vw 1vw;
+
+.color-legend div {
+    margin: 2px 0;
 }
-.bar{
-	border: 0.05vw solid black;
-	width:0.6vw;
-	margin:0.1vw;
-	background-color: #c67474;
-	font-size: 5px;
+
+.color-legend span {
+    margin-right: 15px;
 }
-.sorts{
-	display: flex;
-	justify-content: center;
-	flex-wrap: wrap;
+
+.header {
+    display: flex;
+    flex-wrap: wrap;
+    font-weight: bold;
+    background-color: #2e88bd;
+    margin: 0;
+    color: rgb(206, 190, 190);
+    padding: 1vw 1vw 2vw 1vw;
+    margin-bottom: 2vw;
+    align-items: center;
 }
-.vars{
-	width: 60%;
-	align-self: flex-start;
-	text-align: center;
-	font-size: 1.3vw;
-	font-family: sans-serif;
+
+#technique {
+    color: white;
+    width: 100%;
+    display: none;
+    justify-content: center;
+    padding-bottom: 10px;
+    font-family: "Pacifico";
 }
+
+h1 {
+    font-size: 3vw;
+    font-family: Pacifico, cursive;
+    font-weight: lighter;
+    width: 25%;
+    text-align: center;
+}
+
+.range {
+    justify-content: space-evenly;
+    display: flex;
+    flex-wrap: wrap;
+    flex-flow: wrap;
+}
+
+.slide {
+    margin: 0vw 1vw;
+}
+
+.sorts {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.vars {
+    width: 60%;
+    align-self: flex-start;
+    text-align: center;
+    font-size: 1.3vw;
+    font-family: sans-serif;
+}
+
 input[type="button"] {
-	margin: 1.5vw 0.5vw;
+    margin: 1.5vw 0.5vw;
 }
-input[type="button"]:hover, button:hover{
-	background-color: #f8a7a7;
-	cursor: pointer;
-	color: #1830a8;
+
+input[type="button"]:hover, button:hover {
+    background-color: #f8a7a7;
+    cursor: pointer;
+    color: #1830a8;
 }
-input[type="button"]:disabled, input[type="range"]:disabled{
-	background-color: #ffffff;
-	cursor: not-allowed;
-	color: blue;
+
+input[type="button"]:disabled, input[type="range"]:disabled {
+    background-color: #ffffff;
+    cursor: not-allowed;
+    color: blue;
 }
-input[type="button"], button{
-	background: rgb(100, 96, 96);
-	border: none;
-	padding: 1.3vh;
-	border-radius: 9vw;
-	min-width: 8vw;
-	color: #f8a7a7;
-	font-size: 1.2vw;
+
+input[type="button"], button {
+    background: rgb(100, 96, 96);
+    border: none;
+    padding: 1.3vh;
+    border-radius: 9vw;
+    min-width: 8vw;
+    color: #f8a7a7;
+    font-size: 1.2vw;
+}
+
+/* Footer styling */
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #2e88bd;
+    color: rgb(206, 190, 190);
+    text-align: center;
+    padding: 1vw 0;
+    font-family: sans-serif;
+    font-size: 1vw;
+}
+
+footer a {
+    color: #f8a7a7;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
 }

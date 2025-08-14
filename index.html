@@ -1,32 +1,49 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Sort me</title>
+  <title>Sort Arrays</title>
   <link rel="stylesheet" type="text/css" href="style/index.css" />
   <link rel="shortcut icon" href="favicon.ico">
 </head>
 
 <body>
   <div class="header">
-    <h1>Sort Me :)</h1>
+    <h1>Sort Arrays</h1>
+
+    <!-- Color Legend -->
+    <div class="color-legend">
+      <div><span style="color: #fd0081;">Pink</span>: Unsorted</div>
+      <div><span style="color: #431f91;">Purple</span>: Comparing</div>
+      <div><span style="color: brown;">Brown</span>: Selected</div>
+      <div><span style="color: #8ef511;">Green</span>: Sorted</div>
+    </div>
+
     <div class="vars">
       <div class="range">
         <div class="slide">
-          <label for="bars">ِArray Size</label> :
-          <input id="bars" type="range" name="bars" min="1" max="100" value="50" oninput="setup()" onchange="setup()" />
-          <span id="b"> </span>
+          <label for="bars">Array Size</label> :
+          <input id="bars" type="range" name="bars" min="1" max="30" value="10" oninput="setup()" onchange="setup()" />
+          <span id="b"></span>
         </div>
         <div class="slide">
           <label for="delay">Speed</label> :
-          <input id="delay" type="range" name="delay" min="0" max="1000" value="25" oninput="setup()"
-            onchange="setup()" />
+          <input id="delay" type="range" name="delay" min="0" max="1000" value="750" oninput="setup()" onchange="setup()" />
           <span id="d"></span>
         </div>
       </div>
-      <div class="sorts">
+
+      <!-- User Input Array -->
+      <div class="user-input" style="margin-top:0.5vw;">
+        <label for="userArray">Enter array (comma separated):</label>
+        <input type="text" id="userArray" placeholder="e.g. 5,2,9,1,7">
+        <button onclick="UseUserArray()">Set Array</button>
+      </div>
+
+      <div class="sorts" style="margin-top:0.5vw;">
         <input type="button" onclick="SelectionSort()" value="Selection Sort" />
         <input type="button" onclick="BubbleSort()" value="Bubble Sort" />
         <input type="button" onclick="InsertionSort()" value="Insertion Sort" />
@@ -34,11 +51,18 @@
         <input type="button" onclick="QuickSort()" value="Quick Sort" />
         <input type="button" onclick="HeapSort()" value="Heap Sort" /><br /><br />
       </div>
+
       <button onclick="reset()">Generate New Array</button>
     </div>
   </div>
+
   <div id="technique"></div>
   <div id="container"></div>
+
+  <footer>
+    <p>Created by Anant | <a href="https://github.com/yourusername/Sorting-Visualizer-Signed" target="_blank">GitHub</a> | 2025</p>
+  </footer>
+
   <script src="App/beep.js"></script>
   <script src="App/script.js"></script>
 </body>
